@@ -12,6 +12,7 @@ to both me and others who use this.
 ## User Stories
 
 - As a user, I want to be able to add a product to buy to the shopping list
+- - As a user, I want to be able to add multiple products to buy to the shopping list
 - As a user, I want to be able to view the shopping list and see all the products I've added
 - As a user, I want to be able to input prices, discount codes, and links for a specific product
 - As a user, I want to be able to select a product in the shopping list and view its details
