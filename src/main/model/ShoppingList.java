@@ -13,7 +13,7 @@ public class ShoppingList {
     public ShoppingList(String listName) {
         this.amount = 0;
         this.name = listName;
-        this.products = null;
+        this.products = new ArrayList<>();
     }
 
     // getter
@@ -33,16 +33,18 @@ public class ShoppingList {
 
     // REQUIRES: nothing
     // MODIFIES: this
-    // EFFECTS: add a product to products
+    // EFFECTS: add a product to products and increases amount by 1
     public void addProduct(Product product) {
-        products.add(product);
+        this.products.add(product);
+        this.amount++;
     }
 
     // REQUIRES: product exists in products
     // MODIFIES: this
-    // EFFECTS: remove a product from products
+    // EFFECTS: remove a product from products and decreases amount by 1
     public void deleteProduct(Product product) {
-        products.remove(product);
+        this.products.remove(product);
+        this.amount--;
     }
 
 }
