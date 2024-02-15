@@ -3,11 +3,12 @@ package model;
 // represents a single product
 
 public class Product {
-    private String name;     // name of product
+    private String name;        // name of product
     private double price;       // price of product
     private double discount;    // discount percentage (in decimal form)
-    private String code;     // discount code
-    private String link;     // link to product
+    private String code;        // discount code
+    private String link;        // link to product
+    private boolean status;     // true if product has been bought
 
     // constructor
     public Product(String productName, double productPrice, double productDiscount, String productCode,
@@ -17,6 +18,7 @@ public class Product {
         this.discount = productDiscount;
         this.code = productCode;
         this.link = productLink;
+        this.status = false;
     }
 
     // getter
@@ -42,6 +44,11 @@ public class Product {
     // getter
     public String getLink() {
         return link;
+    }
+
+    // getter
+    public boolean getStatus() {
+        return status;
     }
 
     // REQUIRES: nothing
@@ -77,5 +84,12 @@ public class Product {
     // EFFECTS: changes link of product
     public void inputLink(String productLink) {
         this.link = productLink;
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: changes status of product to true
+    public void productBought() {
+        this.status = true;
     }
 }

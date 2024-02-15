@@ -21,6 +21,7 @@ public class ProductTest {
         assertEquals(0.25, testProduct.getDiscount());
         assertEquals("CODE", testProduct.getCode());
         assertEquals("www.website.com", testProduct.getLink());
+        assertTrue(testProduct.getStatus());
     }
 
     @Test
@@ -46,6 +47,11 @@ public class ProductTest {
     @Test
     void testGetLink() {
         assertEquals("www.website.com", testProduct.getLink());
+    }
+
+    @Test
+    void testGetStatus() {
+        assertTrue(testProduct.getStatus());
     }
 
     @Test
@@ -81,5 +87,12 @@ public class ProductTest {
         testProduct.inputLink("www.website1.com");
 
         assertEquals("www.website1.com", testProduct.getLink());
+    }
+
+    @Test
+    void testProductBought() {
+        testProduct.productBought();
+
+        assertTrue(testProduct.getStatus());
     }
 }

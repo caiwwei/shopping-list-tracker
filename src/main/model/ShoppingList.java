@@ -47,4 +47,18 @@ public class ShoppingList {
         this.amount--;
     }
 
+    // REQUIRES: products has at least one product
+    // MODIFIES: this
+    // EFFECTS: return number of all bought items
+    public int boughtProducts() {
+        int boughtProductsCount = 0;
+
+        for (Product product : products) {
+            if (product.getStatus()) {
+                boughtProductsCount++;
+            }
+        }
+
+        return boughtProductsCount;
+    }
 }
