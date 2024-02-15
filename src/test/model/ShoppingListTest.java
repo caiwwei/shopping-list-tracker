@@ -1,5 +1,11 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class ShoppingListTest {
-    // delete or rename this class!
+    private Product testProduct;
+
 }

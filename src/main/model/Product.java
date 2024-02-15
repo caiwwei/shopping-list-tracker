@@ -4,13 +4,14 @@ package model;
 
 public class Product {
     private String name;     // name of product
-    private int price;       // price of product
-    private int discount;    // discount percentage (in decimal form)
+    private double price;       // price of product
+    private double discount;    // discount percentage (in decimal form)
     private String code;     // discount code
     private String link;     // link to product
 
     // constructor
-    public Product(String productName, int productPrice, int productDiscount, String productCode, String productLink) {
+    public Product(String productName, double productPrice, double productDiscount, String productCode,
+                   String productLink) {
         this.name = productName;
         this.price = productPrice;
         this.discount = productDiscount;
@@ -24,12 +25,12 @@ public class Product {
     }
 
     // getter
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
     // getter
-    public int getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
@@ -53,14 +54,14 @@ public class Product {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes price of product
-    public void inputPrice(int productPrice) {
+    public void inputPrice(double productPrice) {
         this.price = productPrice;
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes discount of product
-    public void inputDiscount(int productDiscount) {
+    public void inputDiscount(double productDiscount) {
         this.discount = productDiscount;
     }
 
@@ -74,7 +75,7 @@ public class Product {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes link of product
-    public void inputLike(String productLink) {
+    public void inputLink(String productLink) {
         this.link = productLink;
     }
 }
