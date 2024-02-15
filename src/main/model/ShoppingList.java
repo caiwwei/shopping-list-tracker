@@ -34,15 +34,15 @@ public class ShoppingList {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: add a product to products
-    public void addProduct(Product product){
-        // TODO
+    public void addProduct(Product product) {
+        products.add(product);
     }
 
     // REQUIRES: product exists in products
     // MODIFIES: this
     // EFFECTS: remove a product from products
-    public void deleteProduct(Product product){
-        // TODO
+    public void deleteProduct(Product product) {
+        products.remove(product);
     }
 
 }

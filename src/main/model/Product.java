@@ -46,35 +46,35 @@ public class Product {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes name of product
-    public void inputName() {
-        // TODO
+    public void inputName(String productName) {
+        this.name = productName;
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes price of product
-    public void inputPrice() {
-        // TODO
+    public void inputPrice(int productPrice) {
+        this.price = productPrice;
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes discount of product
-    public void inputDiscount() {
-        // TODO
+    public void inputDiscount(int productDiscount) {
+        this.discount = productDiscount;
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes code of product
-    public void inputCode() {
-        // TODO
+    public void inputCode(String productCode) {
+        this.code = productCode;
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: changes link of product
-    public void inputLike() {
-        // TODO
+    public void inputLike(String productLink) {
+        this.link = productLink;
     }
 }
