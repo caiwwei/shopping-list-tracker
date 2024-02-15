@@ -51,37 +51,27 @@ public class Product {
         return status;
     }
 
-    // REQUIRES: nothing
-    // MODIFIES: this
-    // EFFECTS: changes name of product
+    // setter
     public void inputName(String productName) {
         this.name = productName;
     }
 
-    // REQUIRES: nothing
-    // MODIFIES: this
-    // EFFECTS: changes price of product
+    // setter
     public void inputPrice(double productPrice) {
         this.price = productPrice;
     }
 
-    // REQUIRES: nothing
-    // MODIFIES: this
-    // EFFECTS: changes discount of product
+    // setter
     public void inputDiscount(double productDiscount) {
         this.discount = productDiscount;
     }
 
-    // REQUIRES: nothing
-    // MODIFIES: this
-    // EFFECTS: changes code of product
+    // setter
     public void inputCode(String productCode) {
         this.code = productCode;
     }
 
-    // REQUIRES: nothing
-    // MODIFIES: this
-    // EFFECTS: changes link of product
+    // setter
     public void inputLink(String productLink) {
         this.link = productLink;
     }

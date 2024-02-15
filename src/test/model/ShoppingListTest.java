@@ -64,9 +64,12 @@ class ShoppingListTest {
 
     @Test
     void testBoughtProducts() {
+        testShoppingList.addProduct(testProduct);
+
         assertEquals(0, testShoppingList.boughtProducts());
 
         testProduct.productBought();
-        assertEquals(0, testShoppingList.boughtProducts());
+
+        assertEquals(1, testShoppingList.boughtProducts());
     }
 }
