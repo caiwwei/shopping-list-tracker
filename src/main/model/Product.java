@@ -1,6 +1,6 @@
 package model;
 
-// represents a single product
+// represents a single product with name, price, discount, code, link, and status
 
 public class Product {
     private String name;        // name of product
