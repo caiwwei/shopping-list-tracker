@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ShoppingListApp {
     private Product product;
     private ShoppingList shoppingList;
-    private ArrayList<ShoppingList> shoppingLists;
+    private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
 
     // REQUIRES: nothing
     // MODIFIES: nothing
@@ -68,7 +68,6 @@ public class ShoppingListApp {
 
         shoppingList = new ShoppingList(name);
 
-        shoppingLists = new ArrayList<>();
         shoppingLists.add(shoppingList);
         whetherAddProduct();
     }
