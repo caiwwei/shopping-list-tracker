@@ -35,6 +35,8 @@ public class ShoppingListApp {
         System.out.println("Main Menu:"
                 + "\nCreate New Shopping List: Enter 'list'"
                 + "\nCreate New Product: Enter 'product'"
+                + "\nView Shopping Lists: Enter 'view lists'"
+                + "\nView Products in Selected Shopping List: Enter 'view products'"
                 + "\nReturn to Main Menu: Enter 'main'");
         String input = scanner.nextLine();
 
@@ -42,6 +44,10 @@ public class ShoppingListApp {
             createShoppingList();
         } else if (input.equals("product")) {
             whetherAddProduct();
+        } else if (input.equals("view lists")) {
+            viewShoppingLists();
+        } else if (input.equals("view products")) {
+            viewProducts();
         } else if (input.equals("main")) {
             mainMenu();
         } else {
@@ -107,5 +113,49 @@ public class ShoppingListApp {
         } else {
             whetherAddProduct();
         }
+    }
+
+    // REQUIRES: a shopping list must already be created
+    // MODIFIES: this
+    // EFFECTS: views all shopping lists created
+    public void viewShoppingLists() {
+        System.out.println("Your Shopping Lists:");
+        for (ShoppingList shoppingList : shoppingLists) {
+            System.out.println(shoppingList.getName());
+        }
+
+        mainMenu();
+    }
+
+    // REQUIRES: a shopping list must already be created
+    // MODIFIES: this
+    // EFFECTS: selects a shopping list
+    public ShoppingList selectShoppingList() {
+        ShoppingList selectedShoppingList = new ShoppingList("placeholder");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your selected shopping list:");
+        String input = scanner.nextLine();
+
+        for (ShoppingList shoppingList : shoppingLists) {
+            if (input.equals(shoppingList.getName())) {
+                selectedShoppingList = shoppingList;
+            }
+        }
+        return selectedShoppingList;
+    }
+
+    // REQUIRES: a shopping list must already be created
+    // MODIFIES: this
+    // EFFECTS: views all products in selected shopping list
+    public void viewProducts() {
+        ShoppingList shoppingListProduct = selectShoppingList();
+        System.out.println("Your Products in " + shoppingListProduct.getName() + ":");
+
+        for (Product product : shoppingListProduct.getProducts()) {
+            System.out.println(product.getName());
+        }
+
+        mainMenu();
     }
 }
