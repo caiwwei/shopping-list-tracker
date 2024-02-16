@@ -21,7 +21,7 @@ public class ShoppingListApp {
 
     // REQUIRES: nothing
     // MODIFIES: nothing
-    // EFFECTS: runs creating shopping list
+    // EFFECTS: runs create shopping list
     public void runShoppingList() {
         createShoppingList();
     }
