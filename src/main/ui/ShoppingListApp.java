@@ -32,11 +32,10 @@ public class ShoppingListApp {
     public void mainMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Main Menu:"
-                + "\nCreate New Shopping List: Enter 'list'"
-                + "\nCreate New Product: Enter 'product'"
-                + "\nView Shopping Lists: Enter 'view lists'"
+        System.out.println("Main Menu:" + "\nCreate New Shopping List: Enter 'list'"
+                + "\nCreate New Product: Enter 'product'" + "\nView Shopping Lists: Enter 'view lists'"
                 + "\nView Products in Selected Shopping List: Enter 'view products'"
+                + "\nView Product Details: Enter 'view product'"
                 + "\nReturn to Main Menu: Enter 'main'");
         String input = scanner.nextLine();
 
@@ -48,6 +47,8 @@ public class ShoppingListApp {
             viewShoppingLists();
         } else if (input.equals("view products")) {
             viewProducts();
+        } else if (input.equals("view product")) {
+            viewProduct();
         } else if (input.equals("main")) {
             mainMenu();
         } else {
@@ -155,6 +156,42 @@ public class ShoppingListApp {
         for (Product product : shoppingListProduct.getProducts()) {
             System.out.println(product.getName());
         }
+
+        mainMenu();
+    }
+
+    // REQUIRES: a product must already be created
+    // MODIFIES: this
+    // EFFECTS: selects a product in a selected shopping list
+    public Product selectProduct() {
+        ShoppingList selectedShoppingList = selectShoppingList();
+
+        Product selectedProduct = new Product("",0,0,"","");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your selected product:");
+        String input = scanner.nextLine();
+
+        for (Product product : selectedShoppingList.getProducts()) {
+            if (input.equals(product.getName())) {
+                selectedProduct = product;
+            }
+        }
+        return selectedProduct;
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: views details of selected product in selected shopping list
+    public void viewProduct() {
+        Product product = selectProduct();
+        System.out.println("Your Product:"
+                + "\nName: " + product.getName()
+                + "\nPrice: " + product.getPrice()
+                + "\nDiscount: " + product.getDiscount()
+                + "\nCode: " + product.getCode()
+                + "\nLink: " + product.getLink()
+                + "\nStatus: " + product.getStatus());
 
         mainMenu();
     }
