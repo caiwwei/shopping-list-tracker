@@ -21,9 +21,33 @@ public class ShoppingListApp {
 
     // REQUIRES: nothing
     // MODIFIES: nothing
-    // EFFECTS: runs create shopping list
+    // EFFECTS: runs main menu
     public void runShoppingList() {
-        createShoppingList();
+        mainMenu();
+    }
+
+    // REQUIRES: if 'product' is entered, a shopping list must already be created
+    // MODIFIES: nothing
+    // EFFECTS: opens main menu
+    public void mainMenu() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Main Menu:"
+                + "\nCreate New Shopping List: Enter 'list'"
+                + "\nCreate New Product: Enter 'product'"
+                + "\nReturn to Main Menu: Enter 'main'");
+        String input = scanner.nextLine();
+
+        if (input.equals("list")) {
+            createShoppingList();
+        } else if (input.equals("product")) {
+            whetherAddProduct();
+        } else if (input.equals("main")) {
+            mainMenu();
+        } else {
+            System.out.println("Please select an option!");
+            mainMenu();
+        }
     }
 
     // REQUIRES: nothing
@@ -36,6 +60,9 @@ public class ShoppingListApp {
         System.out.println("Your Shopping List: " + name);
 
         shoppingList = new ShoppingList(name);
+
+        shoppingLists = new ArrayList<>();
+        shoppingLists.add(shoppingList);
         whetherAddProduct();
     }
 
@@ -63,6 +90,8 @@ public class ShoppingListApp {
         product = new Product(name, price, discount, code, link);
         shoppingList.addProduct(product);
         System.out.println("Your product has been added!");
+        System.out.println("Returning to main menu...");
+        mainMenu();
     }
 
     // REQUIRES: nothing
@@ -70,7 +99,7 @@ public class ShoppingListApp {
     // EFFECTS: determines whether to add product based on user input
     public void whetherAddProduct() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 'add' to add product.");
+        System.out.println("Enter 'add' to add a product.");
         String input = scanner.nextLine();
 
         if (input.equals("add")) {
