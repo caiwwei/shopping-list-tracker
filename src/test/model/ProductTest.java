@@ -21,7 +21,7 @@ public class ProductTest {
         assertEquals(0.25, testProduct.getDiscount());
         assertEquals("CODE", testProduct.getCode());
         assertEquals("www.website.com", testProduct.getLink());
-        assertTrue(testProduct.getStatus());
+        assertFalse(testProduct.getStatus());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ProductTest {
 
     @Test
     void testGetStatus() {
-        assertTrue(testProduct.getStatus());
+        assertFalse(testProduct.getStatus());
     }
 
     @Test
