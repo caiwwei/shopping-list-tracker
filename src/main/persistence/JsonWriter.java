@@ -7,7 +7,7 @@ import java.io.*;
 
 // used JsonSerializationDemo as reference
 
-// Represents a writer that writes JSON representation of workroom to file
+// represents a writer that writes JSON representation of shopping list to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
