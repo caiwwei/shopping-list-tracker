@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+// used JsonSerializationDemo as reference
+
 // represents a single shopping list with products
 
 public class ShoppingList {
@@ -60,5 +66,23 @@ public class ShoppingList {
         }
 
         return boughtProductsCount;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("products", productsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns products in this shopping list as a JSON array
+    private JSONArray productsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Product p : products) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 }

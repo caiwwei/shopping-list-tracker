@@ -6,16 +6,29 @@ import model.ShoppingList;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+// used JsonSerializationDemo as reference
+
 // shopping list tracker application
 public class ShoppingListApp {
     private Product product;
     private ShoppingList shoppingList;
     private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
+    private static final String JSON_STORE = "./data/shoppinglist.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // REQUIRES: nothing
     // MODIFIES: nothing
     // EFFECTS: runs shopping list tracker application
-    public ShoppingListApp() {
+    public ShoppingListApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runShoppingList();
     }
 
@@ -26,35 +39,54 @@ public class ShoppingListApp {
         mainMenu();
     }
 
-    // REQUIRES: if 'product' is entered, a shopping list must already be created
+    // REQUIRES: if '+' is entered, a shopping list must already be created
     // MODIFIES: nothing
     // EFFECTS: opens main menu
+    @SuppressWarnings("methodlength")
     public void mainMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Main Menu:" + "\nCreate New Shopping List: Enter 'list'"
-                + "\nCreate New Product: Enter 'product'" + "\nView Shopping Lists: Enter 'view lists'"
-                + "\nView Products in Selected Shopping List: Enter 'view products'"
-                + "\nView Product Details: Enter 'view product'"
-                + "\nReturn to Main Menu: Enter 'main'");
+        displayMainMenu();
+
         String input = scanner.nextLine();
 
-        if (input.equals("list")) {
+        if (input.equals(">")) {
             createShoppingList();
-        } else if (input.equals("product")) {
+        } else if (input.equals("+")) {
             whetherAddProduct();
-        } else if (input.equals("view lists")) {
+        } else if (input.equals("-")) {
             viewShoppingLists();
-        } else if (input.equals("view products")) {
+        } else if (input.equals("=")) {
             viewProducts();
-        } else if (input.equals("view product")) {
+        } else if (input.equals("/")) {
             viewProduct();
-        } else if (input.equals("main")) {
+        } else if (input.equals(".")) {
+            saveShoppingList();
+        } else if (input.equals(",")) {
+            loadShoppingList();
+        } else if (input.equals("!")) {
+            System.out.println("Closing shopping list application...");
+        } else if (input.equals("<")) {
             mainMenu();
         } else {
             System.out.println("Please select an option!");
             mainMenu();
         }
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: nothing
+    // EFFECTS: prints main menu
+    public void displayMainMenu() {
+        System.out.println("Main Menu:" + "\nCreate New Shopping List: Enter '>'"
+                + "\nCreate New Product: Enter '+'"
+                + "\nView Shopping Lists: Enter '-'"
+                + "\nView Products in Selected Shopping List: Enter '='"
+                + "\nView Product Details: Enter '/'"
+                + "\nSave Shopping List to File: Enter '.'"
+                + "\nLoad Shopping List from File: Enter ','"
+                + "\nQuit Application: Enter '!'"
+                + "\nReturn to Main Menu: Enter '<'");
     }
 
     // REQUIRES: nothing
@@ -193,5 +225,34 @@ public class ShoppingListApp {
                 + "\nStatus: " + product.getStatus());
 
         mainMenu();
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: nothing
+    // EFFECTS: saves the shopping list to file
+    private void saveShoppingList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(shoppingList);
+            jsonWriter.close();
+            System.out.println("Saved " + shoppingList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: loads shopping list from file
+    private void loadShoppingList() {
+        try {
+            shoppingList = jsonReader.read();
+            System.out.println("Loaded " + shoppingList.getName() + " from " + JSON_STORE);
+
+            shoppingLists.add(shoppingList);
+            mainMenu();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

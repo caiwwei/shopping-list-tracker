@@ -1,8 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+// used JsonSerializationDemo as reference
+
 // represents a single product with name, price, discount, code, link, and status
 
-public class Product {
+public class Product implements Writable {
     private String name;        // name of product
     private double price;       // price of product
     private double discount;    // discount percentage (in decimal form)
@@ -81,5 +86,15 @@ public class Product {
     // EFFECTS: changes status of product to true
     public void productBought() {
         this.status = true;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        json.put("discount", discount);
+        json.put("code", code);
+        json.put("link", link);
+        return json;
     }
 }
