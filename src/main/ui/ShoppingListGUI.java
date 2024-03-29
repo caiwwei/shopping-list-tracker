@@ -149,7 +149,8 @@ public class ShoppingListGUI {
     // MODIFIES: this
     // EFFECTS: creates shopping list with user input
     private void createShoppingList() {
-        String name = JOptionPane.showInputDialog(frame, "Enter Shopping List Name:");
+        String name = (String) JOptionPane.showInputDialog(frame, "Enter Shopping List Name:", "Shopping List",
+                JOptionPane.INFORMATION_MESSAGE, icon, null, "");
         if (name != null && !name.isEmpty()) {
             ShoppingList shoppingList = new ShoppingList(name);
             shoppingLists.add(shoppingList);
@@ -242,7 +243,8 @@ public class ShoppingListGUI {
             JOptionPane.showMessageDialog(frame, "Shopping list saved!", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(frame, "Error: Unable to write to file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame, "Error: Unable to write to file: " + JSON_STORE,
+                    "Shopping List", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 
@@ -257,7 +259,8 @@ public class ShoppingListGUI {
             JOptionPane.showMessageDialog(frame, "Shopping list loaded!", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(frame, "Error: Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame, "Error: Unable to read from file: " + JSON_STORE,
+                    "Shopping List", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 
