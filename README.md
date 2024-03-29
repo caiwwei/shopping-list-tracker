@@ -18,3 +18,13 @@ to both me and others who use this.
 - As a user, I want to be able to select a product in the shopping list and view its details 
 - As a user, I want to be able to save my shopping list to file, if I choose to do so
 - As a user, I want to be able to be able to load my shopping list from file, if I choose to do so
+
+## Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking "Add 
+  Product"
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking "View
+  Products"
+- You can locate my visual component by clicking "Create Shopping List" or viewing any other message pop-up.
+- You can save the state of my application by clicking "Save Shopping List"
+- You can reload the state of my application by clicking "Load Shopping List"
