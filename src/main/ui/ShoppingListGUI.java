@@ -23,8 +23,11 @@ import java.awt.event.ActionListener;
 // troubleshot custom icons from https://www.youtube.com/watch?v=By2wARNZ-QQ
 // troubleshot custom icons from https://stackoverflow.com/questions/33961793/custom-icon-joptionpane-showinputdialog
 // learned string builder from https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
+// troubleshot parse double from https://www.geeksforgeeks.org/double-parsedouble-method-in-java-with-examples/
+// troubleshot panel size from https://coderanch.com/t/750824/java/add-panels-JFrame-set-size
+// troubleshot panel size from https://stackoverflow.com/questions/18767367/size-of-text-area-in-java
 
-// shopping list tracker application
+// shopping list tracker GUI application
 public class ShoppingListGUI {
     private JFrame frame;
 
@@ -44,6 +47,8 @@ public class ShoppingListGUI {
     private static final String JSON_STORE = "./data/shoppinglist.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+
+    private Dimension minSize = new Dimension(200, 400);
 
     // REQUIRES: nothing
     // MODIFIES: nothing
@@ -96,10 +101,10 @@ public class ShoppingListGUI {
             }
         });
 
-        JButton addButton = new JButton("Add Product");
-        addButton.addActionListener(new ActionListener() {
+        JButton addProductButton = new JButton("Add Product");
+        addProductButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addProductToList();
+                addShoppingListProduct();
             }
         });
 
@@ -117,26 +122,26 @@ public class ShoppingListGUI {
             }
         });
 
-        JButton saveButton = new JButton("Save Shopping List");
-        saveButton.addActionListener(new ActionListener() {
+        JButton saveShoppingListButton = new JButton("Save Shopping List");
+        saveShoppingListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 saveShoppingList();
             }
         });
 
-        JButton loadButton = new JButton("Load Shopping List");
-        loadButton.addActionListener(new ActionListener() {
+        JButton loadShoppingListButton = new JButton("Load Shopping List");
+        loadShoppingListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 loadShoppingList();
             }
         });
 
         panel.add(createListButton);
-        panel.add(addButton);
+        panel.add(addProductButton);
         panel.add(viewListsButton);
         panel.add(viewProductsButton);
-        panel.add(saveButton);
-        panel.add(loadButton);
+        panel.add(saveShoppingListButton);
+        panel.add(loadShoppingListButton);
 
         productListArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(productListArea);
@@ -145,6 +150,13 @@ public class ShoppingListGUI {
         shoppingListModel = new DefaultComboBoxModel<>();
         shoppingListComboBox = new JComboBox<>(shoppingListModel);
         panel.add(shoppingListComboBox);
+
+        productListArea.setMinimumSize(minSize);
+        scrollPane.setMinimumSize(minSize);
+        shoppingListComboBox.setMinimumSize(minSize);
+        productListArea.setPreferredSize(minSize);
+        scrollPane.setPreferredSize(minSize);
+        shoppingListComboBox.setPreferredSize(minSize);
 
         frame.add(panel);
         frame.setVisible(true);
@@ -167,7 +179,7 @@ public class ShoppingListGUI {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: create and add product with user input
-    private void addProductToList() {
+    private void addShoppingListProduct() {
         String productName = productNameField.getText();
         double price = Double.parseDouble(priceField.getText());
         double discount = Double.parseDouble(discountField.getText());

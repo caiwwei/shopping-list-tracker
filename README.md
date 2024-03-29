@@ -25,6 +25,8 @@ to both me and others who use this.
   Product"
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking "View
   Products"
+- You can generate a third action related to the user story "adding multiple Xs to a Y" by clicking "View
+  Shopping Lists"
 - You can locate my visual component by clicking "Create Shopping List" or viewing any other message pop-up.
 - You can save the state of my application by clicking "Save Shopping List"
 - You can reload the state of my application by clicking "Load Shopping List"
