@@ -173,24 +173,36 @@ public class ShoppingListGUI {
             ShoppingList shoppingList = new ShoppingList(name);
             shoppingLists.add(shoppingList);
             shoppingListModel.addElement(name);
+        } else {
+            JOptionPane.showMessageDialog(frame, "Please enter a name.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: create and add product with user input
+    @SuppressWarnings("methodlength")
     private void addShoppingListProduct() {
-        String productName = productNameField.getText();
-        double price = Double.parseDouble(priceField.getText());
-        double discount = Double.parseDouble(discountField.getText());
-        String code = codeField.getText();
-        String link = linkField.getText();
-
         if (shoppingListComboBox.getItemCount() == 0) {
             JOptionPane.showMessageDialog(frame, "Please create a shopping list.", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
             return;
         }
+
+        if (productNameField.getText().equals("") || priceField.getText().equals("")
+                || discountField.getText().equals("") || codeField.getText().equals("")
+                || linkField.getText().equals("")) {
+            JOptionPane.showMessageDialog(frame, "Please input all the fields", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
+            return;
+        }
+
+        String productName = productNameField.getText();
+        double price = Double.parseDouble(priceField.getText());
+        double discount = Double.parseDouble(discountField.getText());
+        String code = codeField.getText();
+        String link = linkField.getText();
 
         int selectedIndex = shoppingListComboBox.getSelectedIndex();
         ShoppingList selectedShoppingList = shoppingLists.get(selectedIndex);
