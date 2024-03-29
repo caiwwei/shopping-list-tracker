@@ -31,6 +31,7 @@ public class ShoppingListGUI {
 
     private JComboBox<String> shoppingListComboBox;
     private DefaultComboBoxModel<String> shoppingListModel;
+    private Icon icon = new ImageIcon("icon.png");
 
     private ArrayList<ShoppingList> shoppingLists;
 
@@ -167,7 +168,8 @@ public class ShoppingListGUI {
         String link = linkField.getText();
 
         if (shoppingListComboBox.getItemCount() == 0) {
-            JOptionPane.showMessageDialog(frame, "Please create a shopping list.");
+            JOptionPane.showMessageDialog(frame, "Please create a shopping list.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
             return;
         }
 
@@ -201,7 +203,8 @@ public class ShoppingListGUI {
     // EFFECTS: views all products in selected shopping list
     private void viewProducts() {
         if (shoppingListComboBox.getItemCount() == 0) {
-            JOptionPane.showMessageDialog(frame, "Please create a shopping list.");
+            JOptionPane.showMessageDialog(frame, "Please create a shopping list.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
             return;
         }
 
@@ -224,7 +227,8 @@ public class ShoppingListGUI {
     // EFFECTS: saves the shopping list to file
     private void saveShoppingList() {
         if (shoppingListComboBox.getItemCount() == 0) {
-            JOptionPane.showMessageDialog(frame, "No shopping list available to save.");
+            JOptionPane.showMessageDialog(frame, "No shopping list available to save.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
             return;
         }
 
@@ -235,7 +239,8 @@ public class ShoppingListGUI {
             jsonWriter.open();
             jsonWriter.write(selectedShoppingList);
             jsonWriter.close();
-            JOptionPane.showMessageDialog(frame, "Shopping list saved!");
+            JOptionPane.showMessageDialog(frame, "Shopping list saved!", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(frame, "Error: Unable to write to file: " + JSON_STORE);
         }
@@ -249,7 +254,8 @@ public class ShoppingListGUI {
             ShoppingList shoppingList = jsonReader.read();
             shoppingLists.add(shoppingList);
             shoppingListModel.addElement(shoppingList.getName());
-            JOptionPane.showMessageDialog(frame, "Shopping list loaded!");
+            JOptionPane.showMessageDialog(frame, "Shopping list loaded!", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(frame, "Error: Unable to read from file: " + JSON_STORE);
         }
