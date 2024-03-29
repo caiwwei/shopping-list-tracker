@@ -66,7 +66,7 @@ public class ShoppingListGUI {
     @SuppressWarnings("methodlength")
     private void runShoppingList() {
         frame = new JFrame("Shopping List App");
-        frame.setSize(400, 300);
+        frame.setSize(500, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
@@ -122,6 +122,20 @@ public class ShoppingListGUI {
             }
         });
 
+        JButton buyProductButton = new JButton("Most Expensive");
+        buyProductButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getHighestPrice();
+            }
+        });
+
+        JButton viewBoughtProductsButton = new JButton("Least Expensive");
+        viewBoughtProductsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getLowestPrice();
+            }
+        });
+
         JButton saveShoppingListButton = new JButton("Save Shopping List");
         saveShoppingListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -140,6 +154,8 @@ public class ShoppingListGUI {
         panel.add(addProductButton);
         panel.add(viewListsButton);
         panel.add(viewProductsButton);
+        panel.add(buyProductButton);
+        panel.add(viewBoughtProductsButton);
         panel.add(saveShoppingListButton);
         panel.add(loadShoppingListButton);
 
@@ -250,6 +266,64 @@ public class ShoppingListGUI {
                     .append("Link: ").append(product.getLink()).append(", ")
                     .append("Status: ").append(product.getStatus()).append("\n");
         }
+        productListArea.setText(sb.toString());
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: views the product with the highest price
+    private void getHighestPrice() {
+        if (shoppingListComboBox.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(frame, "Please create a shopping list.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
+            return;
+        }
+
+        int selectedIndex = shoppingListComboBox.getSelectedIndex();
+        ShoppingList selectedShoppingList = shoppingLists.get(selectedIndex);
+        Product highestPrice = new Product("", 0, 0, "", "");
+        StringBuilder sb = new StringBuilder();
+        for (Product product : selectedShoppingList.getProducts()) {
+            if (product.getPrice() > highestPrice.getPrice()) {
+                highestPrice = product;
+            }
+        }
+
+        sb.append("Name: ").append(highestPrice.getName()).append(", ")
+                .append("Price: ").append(highestPrice.getPrice()).append(", ")
+                .append("Discount: ").append(highestPrice.getDiscount()).append(", ")
+                .append("Code: ").append(highestPrice.getCode()).append(", ")
+                .append("Link: ").append(highestPrice.getLink()).append(", ")
+                .append("Status: ").append(highestPrice.getStatus()).append("\n");
+        productListArea.setText(sb.toString());
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: views the product with the lowest price
+    private void getLowestPrice() {
+        if (shoppingListComboBox.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(frame, "Please create a shopping list.", "Shopping List",
+                    JOptionPane.INFORMATION_MESSAGE, icon);
+            return;
+        }
+
+        int selectedIndex = shoppingListComboBox.getSelectedIndex();
+        ShoppingList selectedShoppingList = shoppingLists.get(selectedIndex);
+        Product lowestPrice = new Product("", 100000, 0, "", "");
+        StringBuilder sb = new StringBuilder();
+        for (Product product : selectedShoppingList.getProducts()) {
+            if (product.getPrice() < lowestPrice.getPrice()) {
+                lowestPrice = product;
+            }
+        }
+
+        sb.append("Name: ").append(lowestPrice.getName()).append(", ")
+                .append("Price: ").append(lowestPrice.getPrice()).append(", ")
+                .append("Discount: ").append(lowestPrice.getDiscount()).append(", ")
+                .append("Code: ").append(lowestPrice.getCode()).append(", ")
+                .append("Link: ").append(lowestPrice.getLink()).append(", ")
+                .append("Status: ").append(lowestPrice.getStatus()).append("\n");
         productListArea.setText(sb.toString());
     }
 
