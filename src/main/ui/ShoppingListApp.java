@@ -19,6 +19,7 @@ public class ShoppingListApp {
     private Product product;
     private ShoppingList shoppingList;
     private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
+
     private static final String JSON_STORE = "./data/shoppinglist.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
