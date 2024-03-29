@@ -230,7 +230,7 @@ public class ShoppingListApp {
     // REQUIRES: nothing
     // MODIFIES: nothing
     // EFFECTS: saves the shopping list to file
-    private void saveShoppingList() {
+    public void saveShoppingList() {
         try {
             jsonWriter.open();
             jsonWriter.write(shoppingList);
@@ -244,7 +244,7 @@ public class ShoppingListApp {
     // REQUIRES: nothing
     // MODIFIES: this
     // EFFECTS: loads shopping list from file
-    private void loadShoppingList() {
+    public void loadShoppingList() {
         try {
             shoppingList = jsonReader.read();
             System.out.println("Loaded " + shoppingList.getName() + " from " + JSON_STORE);
