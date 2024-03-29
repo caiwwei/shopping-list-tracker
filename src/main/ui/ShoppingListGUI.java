@@ -17,6 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // used JsonSerializationDemo as reference
+// learned swing syntax from https://web.mit.edu/6.005/www/sp14/psets/ps4/java-6-tutorial/components.html
+// learned swing syntax from https://docs.oracle.com/javase/tutorial/uiswing/components/index.html
+// troubleshot custom icons from https://www.youtube.com/watch?v=U3ACpPu9_kE
+// troubleshot custom icons from https://www.youtube.com/watch?v=By2wARNZ-QQ
+// troubleshot custom icons from https://stackoverflow.com/questions/33961793/custom-icon-joptionpane-showinputdialog
+// learned string builder from https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
 
 // shopping list tracker application
 public class ShoppingListGUI {
@@ -149,8 +155,8 @@ public class ShoppingListGUI {
     // MODIFIES: this
     // EFFECTS: creates shopping list with user input
     private void createShoppingList() {
-        String name = (String) JOptionPane.showInputDialog(frame, "Enter Shopping List Name:", "Shopping List",
-                JOptionPane.INFORMATION_MESSAGE, icon, null, "");
+        String name = (String) JOptionPane.showInputDialog(frame, "Enter Shopping List Name:",
+                "Shopping List", JOptionPane.INFORMATION_MESSAGE, icon, null, "");
         if (name != null && !name.isEmpty()) {
             ShoppingList shoppingList = new ShoppingList(name);
             shoppingLists.add(shoppingList);
@@ -240,10 +246,11 @@ public class ShoppingListGUI {
             jsonWriter.open();
             jsonWriter.write(selectedShoppingList);
             jsonWriter.close();
+
             JOptionPane.showMessageDialog(frame, "Shopping list saved!", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(frame, "Error: Unable to write to file: " + JSON_STORE,
+            JOptionPane.showMessageDialog(frame, "Unable to write to file: " + JSON_STORE,
                     "Shopping List", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
@@ -256,10 +263,11 @@ public class ShoppingListGUI {
             ShoppingList shoppingList = jsonReader.read();
             shoppingLists.add(shoppingList);
             shoppingListModel.addElement(shoppingList.getName());
+
             JOptionPane.showMessageDialog(frame, "Shopping list loaded!", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(frame, "Error: Unable to read from file: " + JSON_STORE,
+            JOptionPane.showMessageDialog(frame, "Unable to read from file: " + JSON_STORE,
                     "Shopping List", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
