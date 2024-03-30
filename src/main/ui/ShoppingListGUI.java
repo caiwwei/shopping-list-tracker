@@ -209,7 +209,7 @@ public class ShoppingListGUI {
         if (productNameField.getText().equals("") || priceField.getText().equals("")
                 || discountField.getText().equals("") || codeField.getText().equals("")
                 || linkField.getText().equals("")) {
-            JOptionPane.showMessageDialog(frame, "Please input all the fields", "Shopping List",
+            JOptionPane.showMessageDialog(frame, "Please input all the fields.", "Shopping List",
                     JOptionPane.INFORMATION_MESSAGE, icon);
             return;
         }
