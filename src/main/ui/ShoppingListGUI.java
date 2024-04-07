@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Product;
 import model.ShoppingList;
 
@@ -16,6 +18,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 // used JsonSerializationDemo as reference
 // learned swing syntax from https://web.mit.edu/6.005/www/sp14/psets/ps4/java-6-tutorial/components.html
 // learned swing syntax from https://docs.oracle.com/javase/tutorial/uiswing/components/index.html
@@ -26,9 +31,10 @@ import java.awt.event.ActionListener;
 // troubleshot parse double from https://www.geeksforgeeks.org/double-parsedouble-method-in-java-with-examples/
 // troubleshot panel size from https://coderanch.com/t/750824/java/add-panels-JFrame-set-size
 // troubleshot panel size from https://stackoverflow.com/questions/18767367/size-of-text-area-in-java
+// learned window listener from https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html
 
 // shopping list tracker GUI application
-public class ShoppingListGUI {
+public class ShoppingListGUI implements WindowListener {
     private JFrame frame;
 
     private JTextField productNameField;
@@ -177,6 +183,8 @@ public class ShoppingListGUI {
         frame.add(panel);
         frame.setVisible(true);
         frame.setResizable(false);
+
+        frame.addWindowListener(this);
     }
 
     // REQUIRES: nothing
@@ -289,6 +297,8 @@ public class ShoppingListGUI {
             }
         }
 
+        selectedShoppingList.highestPrice();
+
         sb.append("Name: ").append(highestPrice.getName()).append(", ")
                 .append("Price: ").append(highestPrice.getPrice()).append(", ")
                 .append("Discount: ").append(highestPrice.getDiscount()).append(", ")
@@ -317,6 +327,8 @@ public class ShoppingListGUI {
                 lowestPrice = product;
             }
         }
+
+        selectedShoppingList.lowestPrice();
 
         sb.append("Name: ").append(lowestPrice.getName()).append(", ")
                 .append("Price: ").append(lowestPrice.getPrice()).append(", ")
@@ -372,5 +384,38 @@ public class ShoppingListGUI {
 
     public static void main(String[] args) {
         new ShoppingListGUI();
+    }
+
+    public void windowOpened(WindowEvent w) {
+
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: nothing
+    // EFFECTS: prints event log to console
+    public void windowClosing(WindowEvent e) {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
+    }
+
+    public void windowClosed(WindowEvent w) {
+
+    }
+
+    public void windowIconified(WindowEvent w) {
+
+    }
+
+    public void windowDeiconified(WindowEvent w) {
+
+    }
+
+    public void windowActivated(WindowEvent w) {
+
+    }
+
+    public void windowDeactivated(WindowEvent w) {
+
     }
 }

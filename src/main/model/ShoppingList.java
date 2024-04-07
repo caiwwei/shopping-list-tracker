@@ -20,6 +20,7 @@ public class ShoppingList {
         this.amount = 0;
         this.name = listName;
         this.products = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("Shopping list created."));
     }
 
     // getter
@@ -43,6 +44,7 @@ public class ShoppingList {
     public void addProduct(Product product) {
         this.products.add(product);
         this.amount++;
+        EventLog.getInstance().logEvent(new Event("Product added."));
     }
 
     // REQUIRES: product exists in products
@@ -66,6 +68,20 @@ public class ShoppingList {
         }
 
         return boughtProductsCount;
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: signals that lowest price was found
+    public void lowestPrice() {
+        EventLog.getInstance().logEvent(new Event("Product with lowest price found."));
+    }
+
+    // REQUIRES: nothing
+    // MODIFIES: this
+    // EFFECTS: signals that highest price was found
+    public void highestPrice() {
+        EventLog.getInstance().logEvent(new Event("Product with highest price found."));
     }
 
     public JSONObject toJson() {
