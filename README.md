@@ -30,15 +30,26 @@ to both me and others who use this.
 - You can reload the state of my application by clicking "Load Shopping List"
 
 ## Phase 4: Task 2
-Sun Apr 07 13:39:45 PDT 2024
+Sun Apr 07 13:39:45 PDT 2024 
+
 Shopping list created.
+
 Sun Apr 07 13:39:58 PDT 2024
+
 Product added.
+
 Sun Apr 07 13:40:03 PDT 2024
+
 Product added.
+
 Sun Apr 07 13:40:09 PDT 2024
+
 Product added.
+
 Sun Apr 07 13:40:12 PDT 2024
+
 Product with lowest price found.
+
 Sun Apr 07 13:40:14 PDT 2024
+
 Product with highest price found.
