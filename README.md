@@ -53,3 +53,9 @@ Product with lowest price found.
 Sun Apr 07 13:40:14 PDT 2024
 
 Product with highest price found.
+
+## Phase 4: Task 3
+If I were to refactor my code to improve the design, I would likely try to add an abstract class in the ui folder that
+that encompasses both the console and GUI Shopping List Application, so that there would be reduced duplication between
+those two classes. For instance, both of those classes has similar functionality, such as adding a product to a shopping
+list. I could refactor these such common methods, and ensure that some of the code is not redundant.
