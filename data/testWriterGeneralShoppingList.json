@@ -1,0 +1,19 @@
+{
+    "name": "Shopping List",
+    "products": [
+        {
+            "code": "code",
+            "price": 10,
+            "name": "toner",
+            "link": "www.website.com",
+            "discount": 0.25
+        },
+        {
+            "code": "code",
+            "price": 20,
+            "name": "serum",
+            "link": "www.website.com",
+            "discount": 0.1
+        }
+    ]
+}

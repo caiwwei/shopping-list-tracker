@@ -1,0 +1,19 @@
+{
+    "name": "skincare",
+    "products": [
+        {
+            "code": "CODE",
+            "price": 20,
+            "name": "serum",
+            "link": "www.website.com",
+            "discount": 0.1
+        },
+        {
+            "code": "CODE",
+            "price": 10,
+            "name": "toner",
+            "link": "www.website.com",
+            "discount": 0.15
+        }
+    ]
+}
